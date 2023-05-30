@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>week12</title>
+</head>
+<body>
+    <input id="textInput" class="name" type="text" size="40" />
+    <input id="textInput2" type="text" size="40" />
+    <input id="textInput3" type="text" size="40" />
+    <button>Отправить</button>
+    <div id="showArea"></div>
+
+    <script>
+    function formatName(str) {
+        let result = str.trim();
+      
+        if (result === "") {
+          return "Аноним";
+        }
+      
+        let arr = result.split(" ");
+      
+        arr = arr.map(
+          (element) => element[0].toUpperCase() + element.slice(1).toLowerCase()
+        );
+      
+        return arr.join(" ");
+      }
+
+      function showImage(src) {
+        let image = document.createElement("img");
+        image.src = src;
+      
+        const container = document.getElementById("showArea");
+      
+        container.append(image, formatName(input.value), checkSpam(input3.value));
+      }
+      
+      const input = document.getElementById("textInput");
+      const input2 = document.getElementById("textInput2");
+      const input3 = document.getElementById("textInput3");
+      const button = document.querySelector("button");
+      
+      button.addEventListener("click", () => {
+        console.log(formatName(input.value));
+        showImage(input2.value);
+        console.log(checkSpam(input3.value));
+        input.value = null;
+        input2.value = null;
+        input3.value = null;
+      });
+      
+      function checkSpam(str) {
+        let pattern = /виагра/gi;
+      
+        return str.replace(pattern, "***");
+      }
+
+
+
+      var str = '<div id="tera">Тут крайне <a href="link">интересная и весьма</a></div>нужная информация.'  
+
+function deleteTags(str) {
+ var regex = /( |<([^>]+)>)/ig,
+     result = str.replace(regex, "");
+
+     return result;
+}
+
+console.log(deleteTags(str))
+      </script>
+</body>
+</html>
